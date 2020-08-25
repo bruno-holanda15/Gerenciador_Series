@@ -23,11 +23,19 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
-        $serie = Serie::create($request->all());
+        $serie = Serie::create(['nome' => $request->nome]);
+        
+        for ($i = 1; $i <=$request->qtd_temporadas ; $i++) { 
+            $temporada = $serie->temporadas()->create(['numero' => $i]);
+            for ($j = 1; $j <= $request->qtd_episodios ; $j++) { 
+                $temporada->episodios()->create(['numero' => $j]);
+            }
+        }
+
         $request->session()
             ->flash(
                 'mensagem',
-                "Série {$serie->id} criada com sucesso {$serie->nome}"
+                "Série {$serie->nome} criada com sucesso "
             );
 
         return redirect()->route('listar_series');
