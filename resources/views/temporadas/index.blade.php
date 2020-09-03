@@ -9,7 +9,7 @@ Série {{ $serie->nome}}
 <ul class="list-group">
     @foreach($temporadas as $temporada)
     <li class="list-group-item d-flex justify-content-between align-items-center">
-        Temporada {{ $temporada->numero }}      
+         <a href="https://google.com"> Temporada {{ $temporada->numero }} </a>      
     </li>
     @endforeach
 </ul>
